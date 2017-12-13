@@ -24,7 +24,9 @@ class Server(object):
                 if str(msg, 'utf-8') == self.secret:
                     for conn, addr in self.connections:
                         for message in self.messages:
-                            conn.send(message)
+                            final = str(message, 'utf-8') + '\n'
+                            final = bytes(final, 'utf-8')
+                            conn.send(final)
                     self.messages = []
                 else:
                     self.messages.append(msg)
