@@ -16,8 +16,6 @@ class Server(object):
         self.messages = []
         self.secret = secret
 
-    def send_que(self, conn):
-
     def _message_server(self, conn_tuple, buffer=1024):
         '''This will handle storing data'''
         while True:
@@ -49,3 +47,6 @@ class Server(object):
             chat_thread.start()
 
 
+if __name__ == '__main__':
+    serv = Server(HOST)
+    serv._connection_manager()
