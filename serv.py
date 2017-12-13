@@ -15,4 +15,18 @@ class Server(object):
         self.connections = []
         self.message = []
 
-    def _handle_connections(self):
+    def _message_server(self, conn_tuple):
+        '''This will handle storing data'''
+
+    def _connection_manager(self):
+        '''This will manage putting new connections in list and sending them to the message server'''
+        while True:
+            conn, addr = self.s.accept()
+            connect_tuple = (conn, addr)
+            self.connections.append(connect_tuple)
+
+            # Create thread for individual connection
+            chat_thread = threading.Thread(target=self._message_server, args=(connect_tuple,))
+            chat_thread.daemon = True
+            chat_thread.start()
+
