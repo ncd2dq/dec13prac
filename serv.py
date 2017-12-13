@@ -31,7 +31,7 @@ class Server(object):
 
             except Exception as e:
                 print(e)
-                self.connections.remove(conn_tuple[0])
+                self.connections.remove(conn_tuple)
                 break
 
     def _connection_manager(self):
